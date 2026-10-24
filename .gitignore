@@ -1,0 +1,7 @@
+# raw data and generated intermediates stay out of git
+data/*
+!data/README.md
+build/
+node_modules/
+__pycache__/
+.DS_Store

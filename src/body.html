@@ -1,0 +1,117 @@
+<div class="wrap">
+  <div class="mast">
+    <div>
+      <h1>Transaction Performance Dashboard</h1>
+      <p class="sub">Retail banking, India. Every figure is computed live from 5,50,000 transactions in this page and responds to every filter.</p>
+    </div>
+    <div class="acts">
+      <button class="btn" id="themeBtn" type="button" aria-label="Toggle dark mode">Dark mode</button>
+      <button class="btn primary" id="resetBtn" type="button">Reset all filters</button>
+    </div>
+  </div>
+
+  <div class="deck" id="deck">
+    <div class="deckrow" id="periodRow">
+      <span class="lbl">Period</span>
+      <div class="seg" id="yearSeg" role="group" aria-label="Year"></div>
+      <div class="seg" id="qSeg" role="group" aria-label="Quarter"></div>
+      <select class="sel" id="monthSel" aria-label="Month"></select>
+      <label class="lbl" for="dFrom">From</label><input class="sel" type="date" id="dFrom" min="2019-01-01" max="2024-01-01">
+      <label class="lbl" for="dTo">To</label><input class="sel" type="date" id="dTo" min="2019-01-01" max="2024-01-01">
+      <span class="lbl" style="margin-left:6px">Compare</span>
+      <div class="seg" id="cmpSeg" role="group" aria-label="Comparison">
+        <button type="button" data-v="yoy" aria-pressed="true">vs same period last year</button>
+        <button type="button" data-v="prev" aria-pressed="false">vs previous period</button>
+      </div>
+      <span class="lbl" style="margin-left:6px">Metric</span>
+      <div class="seg" id="metSeg" role="group" aria-label="Metric">
+        <button type="button" data-v="val" aria-pressed="true">Value</button>
+        <button type="button" data-v="cnt" aria-pressed="false">Count</button>
+        <button type="button" data-v="avg" aria-pressed="false">Avg ticket</button>
+      </div>
+    </div>
+    <div class="deckrow" id="slicers"></div>
+    <div class="deckrow"><div class="chips" id="chips"></div><span class="crumbs" id="crumbs"></span></div>
+    <div id="banner"></div>
+  </div>
+
+  <nav class="nav" id="nav" aria-label="Sections">
+    <a href="#sec-sum" data-t="sec-sum">Executive summary</a>
+    <a href="#sec-growth" data-t="sec-growth">Growth &amp; money flow</a>
+    <a href="#sec-risk" data-t="sec-risk">Risk &amp; fraud</a>
+    <a href="#sec-cust" data-t="sec-cust">Customers &amp; lending</a>
+    <a href="#sec-notes" data-t="sec-notes">Data notes</a>
+    <span class="ns" id="navState"></span>
+  </nav>
+
+  <div id="loading">Unpacking 5,50,000 transactions…</div>
+  <main id="main" hidden>
+
+  <section class="sec" id="sec-sum">
+    <header><h2>Executive summary</h2><p id="sumSub"></p></header>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid" style="margin-top:14px">
+      <div class="card c8" id="insCard">
+        <header><div><h3>Key insights</h3><p class="q">Ranked by rupees at stake. Recomputed for the current filters.</p></div></header>
+        <div class="ins" id="insTop"></div>
+      </div>
+      <div class="card c4" id="snapCard">
+        <header><div><h3>Where the money moves</h3><p class="q">Share of value by payment rail group</p></div></header>
+        <div class="body" id="snapBody"></div>
+        <p class="note" id="snapNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-growth">
+    <header><h2>Growth &amp; money flow</h2><p>Are we growing, and where does the money come from?</p></header>
+    <div class="grid">
+      <div class="card c12" data-card="trend"></div>
+      <div class="card c12" data-card="flow"></div>
+      <div class="card c6" data-card="ttype"></div>
+      <div class="card c6" data-card="mix"></div>
+      <div class="card c6" data-card="chan"></div>
+      <div class="card c6" data-card="acct"></div>
+      <div class="card c6" data-card="state"></div>
+      <div class="card c6" data-card="tree"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-risk">
+    <header><h2>Risk &amp; fraud</h2><p>Where is the risk concentrated, and when does it show up?</p></header>
+    <div class="grid">
+      <div class="card c12" id="hypCard">
+        <header><div><h3>Four hypotheses, tested on the current selection</h3><p class="q">Two-sided tests on the filtered transactions. Verdict flips if you filter to a sample too small to tell.</p></div></header>
+        <div class="hyp" id="hyp"></div>
+      </div>
+      <div class="card c5" data-card="amt"></div>
+      <div class="card c7" data-card="ftype"></div>
+      <div class="card c12" data-card="heat"></div>
+      <div class="card c12" data-card="status"></div>
+      <div class="card c12" id="engCard">
+        <header><div><h3>Insight engine: every finding, with evidence and action</h3><p class="q">Finding, evidence, so what, suggested action. Updates with filters.</p></div></header>
+        <div class="ins" id="insAll"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-cust">
+    <header><h2>Customers &amp; lending</h2><p>Who are our customers, what do they owe, and where is compliance exposed?</p></header>
+    <div class="grid">
+      <div class="card c6" data-card="loan"></div>
+      <div class="card c6" data-card="emi"></div>
+      <div class="card c6" data-card="score"></div>
+      <div class="card c6" data-card="kyc"></div>
+      <div class="card c12" data-card="top"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-notes">
+    <header><h2>Data notes &amp; KPI definitions</h2><p>What each number means and what this data cannot tell you.</p></header>
+    <div class="card c12"><div class="notes" id="notes"></div></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+  </main>
+</div>
+<div id="tip" role="tooltip"></div>
